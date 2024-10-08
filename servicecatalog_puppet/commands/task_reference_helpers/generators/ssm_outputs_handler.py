@@ -1,8 +1,8 @@
 #   Copyright 2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #   SPDX-License-Identifier: Apache-2.0
-
+import logging
 from servicecatalog_puppet import constants, task_reference_constants
-
+logger = logging.getLogger('__main__')
 
 def ssm_outputs_handler(
     all_tasks,
@@ -13,6 +13,13 @@ def ssm_outputs_handler(
     section_name,
     task_to_add,
 ):
+    logger.info(f"All tasks: {all_tasks}")
+    logger.info(f"All tasks task reference: {all_tasks_task_reference}")
+    logger.info(f"Home region: {home_region}")
+    logger.info(f"Item name: {item_name}")
+    logger.info(f"Puppet Account ID: {puppet_account_id}")
+    logger.info(f"Section name: {section_name}")
+    logger.info(f"Task to add: {task_to_add}")
     for ssm_parameter_output in task_to_add.get("ssm_param_outputs", []):
         task_account_id = task_to_add.get("account_id")
         task_region = task_to_add.get("region")
